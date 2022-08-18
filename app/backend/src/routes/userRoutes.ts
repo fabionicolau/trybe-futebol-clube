@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import authMiddleware from '../middlewares/authMiddleware';
-import newController from '../injections/index';
+import { newController } from '../injections/index';
 
 const router = Router();
 
