@@ -15,4 +15,15 @@ export default class UserController {
       errorHandler(error as Error, req, res);
     }
   };
+
+  userLoginAuth = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const { authorization } = req.headers;
+      const user = await this.userService.userLoginAuth(authorization as string);
+
+      res.status(200).json({ role: user.role });
+    } catch (error) {
+      errorHandler(error as Error, req, res);
+    }
+  };
 }
