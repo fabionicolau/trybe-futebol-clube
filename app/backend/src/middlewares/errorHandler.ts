@@ -3,6 +3,7 @@ import { Response, Request } from 'express';
 const Errors: { [key: string]: number } = {
   validationError: 400,
   authenticationError: 401,
+  notFound: 404,
 };
 
 const errorHandler = (error: Error, req: Request, res: Response) => {

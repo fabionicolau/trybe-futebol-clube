@@ -4,11 +4,11 @@ import TeamsController from '../controllers/teamsController';
 import TeamsService from '../services/teamsService';
 
 // userInjection
-const newService = new UserService();
-const newController = new UserController(newService);
+const newUserService = new UserService();
+const newUserController = new UserController(newUserService);
 
 // teamsInjection
 const newTeamService = new TeamsService();
 const newTeamController = new TeamsController(newTeamService);
 
-export { newController, newTeamController };
+export { newUserController, newTeamController };
