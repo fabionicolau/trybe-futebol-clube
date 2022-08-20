@@ -13,7 +13,7 @@ export default class UserService implements IUserService<string | null> {
 
     if (!user || !(await bcrypt.compare(password, user.password))) {
       const error = new Error('Incorrect email or password');
-      error.name = 'authenticationError';
+      error.name = 'unauthorized';
       throw error;
     }
 

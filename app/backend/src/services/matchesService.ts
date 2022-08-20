@@ -1,6 +1,11 @@
+import teamsExistAndAreDifferent from '../validations/teamsValidate';
 import Teams from '../database/models/Teams';
 import Matches from '../database/models/Matches';
-import { IMatches, IMatchesService } from '../interfaces/matchesInterfaces';
+import {
+  IBodyMatches,
+  IMatches,
+  IMatchesCreated,
+  IMatchesService } from '../interfaces/matchesInterfaces';
 
 export default class MatchesService implements IMatchesService {
   getAllMatches = async (): Promise<IMatches[]> => {
@@ -28,5 +33,14 @@ export default class MatchesService implements IMatchesService {
     });
 
     return matches as unknown as IMatches[];
+  };
+
+  createMatches = async (body: IBodyMatches): Promise<IMatchesCreated> => {
+    await teamsExistAndAreDifferent(body);
+
+    const match = { ...body, inProgress: 1 };
+    const createdMatch: IMatchesCreated = await Matches.create(match);
+
+    return createdMatch;
   };
 }

@@ -15,4 +15,15 @@ export default class MatchesController {
       errorHandler(error as Error, req, res);
     }
   };
+
+  createMatches = async (req: Request, res: Response) => {
+    try {
+      const { body } = req;
+      const matches = await this.matchesService.createMatches(body);
+      res.status(201).json(matches);
+    } catch (error) {
+      console.log(error);
+      errorHandler(error as Error, req, res);
+    }
+  };
 }

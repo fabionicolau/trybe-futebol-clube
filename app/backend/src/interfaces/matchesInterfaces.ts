@@ -1,9 +1,5 @@
-export interface IMatches {
+export interface IMatches extends IBodyMatches {
   id?: number;
-  homeTeam: number;
-  homeTeamGoals: number;
-  awayTeam: number;
-  awayTeamGoals: number;
   inProgress: boolean;
   teamHome: {
     teamName: string;
@@ -13,7 +9,20 @@ export interface IMatches {
   }
 }
 
+export interface IBodyMatches {
+  homeTeam: number;
+  awayTeam: number;
+  homeTeamGoals: number;
+  awayTeamGoals: number;
+}
+
+export interface IMatchesCreated extends IBodyMatches {
+  id: number;
+  inProgress: boolean;
+}
+
 export interface IMatchesService {
   getAllMatches(): Promise<IMatches[]>
   getMatchesByProgress(inProgress: string): Promise<IMatches[]>
+  createMatches(body: IBodyMatches): Promise<IMatchesCreated>
 }
