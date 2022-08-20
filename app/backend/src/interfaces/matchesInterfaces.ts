@@ -15,4 +15,5 @@ export interface IMatches {
 
 export interface IMatchesService {
   getAllMatches(): Promise<IMatches[]>
+  getMatchesByProgress(inProgress: string): Promise<IMatches[]>
 }

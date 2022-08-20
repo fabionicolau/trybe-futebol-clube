@@ -5,10 +5,11 @@ import { IMatchesService } from '../interfaces/matchesInterfaces';
 export default class MatchesController {
   constructor(private matchesService: IMatchesService) {}
 
-  getAllMatches = async (req: Request, res: Response) => {
+  getMatchesByProgress = async (req: Request, res: Response) => {
     try {
-      const matches = await this.matchesService.getAllMatches();
-
+      const { inProgress } = req.query;
+      const matches = await this.matchesService
+        .getMatchesByProgress(inProgress as string);
       res.status(200).json(matches);
     } catch (error) {
       errorHandler(error as Error, req, res);
