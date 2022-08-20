@@ -27,10 +27,21 @@ export default class MatchesController {
     }
   };
 
-  finishMatches = async (req: Request, res: Response) => {
+  finishMatch = async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
       const message = await this.matchesService.finishMatch(+id);
+      res.status(200).json({ message });
+    } catch (error) {
+      errorHandler(error as Error, req, res);
+    }
+  };
+
+  updateMatch = async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      const { body } = req;
+      const message = await this.matchesService.updateMatch(+id, body);
       res.status(200).json({ message });
     } catch (error) {
       errorHandler(error as Error, req, res);

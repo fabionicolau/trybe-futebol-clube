@@ -1,3 +1,13 @@
+export interface IBodyResults {
+  homeTeamGoals: number;
+  awayTeamGoals: number;
+}
+
+export interface IBodyMatches extends IBodyResults {
+  homeTeam: number;
+  awayTeam: number;
+}
+
 export interface IMatches extends IBodyMatches {
   id?: number;
   inProgress: boolean;
@@ -7,13 +17,6 @@ export interface IMatches extends IBodyMatches {
   teamAway: {
     teamName: string;
   }
-}
-
-export interface IBodyMatches {
-  homeTeam: number;
-  awayTeam: number;
-  homeTeamGoals: number;
-  awayTeamGoals: number;
 }
 
 export interface IMatchesCreated extends IBodyMatches {
@@ -26,4 +29,5 @@ export interface IMatchesService {
   getMatchesByProgress(inProgress: string): Promise<IMatches[]>
   createMatches(body: IBodyMatches): Promise<IMatchesCreated>
   finishMatch(id: number): Promise<string>
+  updateMatch(id: number, body: IBodyResults): Promise<string>
 }

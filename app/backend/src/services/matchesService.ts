@@ -3,6 +3,7 @@ import Teams from '../database/models/Teams';
 import Matches from '../database/models/Matches';
 import {
   IBodyMatches,
+  IBodyResults,
   IMatches,
   IMatchesCreated,
   IMatchesService } from '../interfaces/matchesInterfaces';
@@ -47,5 +48,10 @@ export default class MatchesService implements IMatchesService {
   finishMatch = async (id: number): Promise<string> => {
     await Matches.update({ inProgress: 0 }, { where: { id } });
     return 'Finished';
+  };
+
+  updateMatch = async (id: number, body: IBodyResults): Promise<string> => {
+    await Matches.update(body, { where: { id } });
+    return 'The scoreboard has been updated';
   };
 }

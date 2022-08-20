@@ -6,6 +6,7 @@ const router = Router();
 
 router.get('/', newMatchesController.getMatchesByProgress);
 router.post('/', authMiddleware, newMatchesController.createMatches);
-router.patch('/:id/finish', authMiddleware, newMatchesController.finishMatches);
+router.patch('/:id', authMiddleware, newMatchesController.updateMatch);
+router.patch('/:id/finish', authMiddleware, newMatchesController.finishMatch);
 
 export default router;
