@@ -10,6 +10,7 @@ export default class MatchesController {
       const { inProgress } = req.query;
       const matches = await this.matchesService
         .getMatchesByProgress(inProgress as string);
+
       res.status(200).json(matches);
     } catch (error) {
       errorHandler(error as Error, req, res);

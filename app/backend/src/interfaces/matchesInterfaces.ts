@@ -25,7 +25,6 @@ export interface IMatchesCreated extends IBodyMatches {
 }
 
 export interface IMatchesService {
-  getAllMatches(): Promise<IMatches[]>
   getMatchesByProgress(inProgress: string): Promise<IMatches[]>
   createMatches(body: IBodyMatches): Promise<IMatchesCreated>
   finishMatch(id: number): Promise<string>

@@ -1,3 +1,5 @@
+import LeaderBoardController from '../controllers/leaderBoardController';
+import LeaderBoardService from '../services/leaderBoardService';
 import UserService from '../services/userService';
 import UserController from '../controllers/userController';
 import TeamsController from '../controllers/teamsController';
@@ -17,4 +19,8 @@ const newTeamController = new TeamsController(newTeamService);
 const newMatchesService = new MatchesService();
 const newMatchesController = new MatchesController(newMatchesService);
 
-export { newUserController, newTeamController, newMatchesController };
+// leaderBoardInjectionn;
+const newLeaderBoardService = new LeaderBoardService();
+const newLeaderBoardController = new LeaderBoardController(newLeaderBoardService);
+
+export { newUserController, newTeamController, newMatchesController, newLeaderBoardController };

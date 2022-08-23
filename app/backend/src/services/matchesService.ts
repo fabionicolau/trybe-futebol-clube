@@ -9,7 +9,7 @@ import {
   IMatchesService } from '../interfaces/matchesInterfaces';
 
 export default class MatchesService implements IMatchesService {
-  getAllMatches = async (): Promise<IMatches[]> => {
+  private getAllMatches = async (): Promise<IMatches[]> => {
     const matches = await Matches.findAll({
       include: [
         { model: Teams, as: 'teamHome', attributes: ['teamName'] },
