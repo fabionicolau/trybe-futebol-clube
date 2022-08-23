@@ -19,6 +19,13 @@ export interface IHomeMatches {
   homeMatches: IMatchesCreated[]
 }
 
+export interface IAwayMatches {
+  id: number,
+  teamName: string,
+  awayMatches: IMatchesCreated[]
+}
+
 export interface ILeaderBoardService {
   getHomeLeaderBoard(): Promise<ILeaderBoard[]>
+  getAwayLeaderBoard(): Promise<ILeaderBoard[]>
 }

@@ -14,4 +14,14 @@ export default class LeaderBoardController {
       errorHandler(error as Error, req, res);
     }
   };
+
+  getAwayLeaderBoard = async (req: Request, res: Response) => {
+    try {
+      const homeBoard = await this.LeaderboardService.getAwayLeaderBoard();
+
+      res.status(200).json(homeBoard);
+    } catch (error) {
+      errorHandler(error as Error, req, res);
+    }
+  };
 }

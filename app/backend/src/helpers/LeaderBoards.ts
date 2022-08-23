@@ -26,9 +26,17 @@ export default class LeaderBoardHelpers {
     this._efficiency = 100;
   }
 
-  setResults = (matches: IMatchesCreated[]): void => {
+  setResults = (matches: IMatchesCreated[], place: 'home' | 'away'): void => {
     matches.forEach((match) => {
-      if (match.homeTeamGoals > match.awayTeamGoals) {
+      if (place === 'home') {
+        if (match.homeTeamGoals > match.awayTeamGoals) {
+          this._totalVictories += 1;
+        } else if (match.homeTeamGoals === match.awayTeamGoals) {
+          this._totalDraws += 1;
+        } else {
+          this._totalLosses += 1;
+        }
+      } else if (match.homeTeamGoals < match.awayTeamGoals) {
         this._totalVictories += 1;
       } else if (match.homeTeamGoals === match.awayTeamGoals) {
         this._totalDraws += 1;
@@ -46,10 +54,15 @@ export default class LeaderBoardHelpers {
     this._totalPoints = this._totalVictories * 3 + this._totalDraws;
   };
 
-  setTotalGoalsScored = (matches: IMatchesCreated[]): void => {
+  setTotalGoalsScored = (matches: IMatchesCreated[], place: 'home' | 'away'): void => {
     matches.forEach((match) => {
-      this._goalsFavor += match.homeTeamGoals;
-      this._goalsOwn += match.awayTeamGoals;
+      if (place === 'home') {
+        this._goalsFavor += match.homeTeamGoals;
+        this._goalsOwn += match.awayTeamGoals;
+      } else {
+        this._goalsFavor += match.awayTeamGoals;
+        this._goalsOwn += match.homeTeamGoals;
+      }
     });
   };
 
@@ -61,11 +74,11 @@ export default class LeaderBoardHelpers {
     this._efficiency = +((this._totalPoints / (this._totalGames * 3)) * 100).toFixed(2);
   };
 
-  getLeaderboard = (match: IMatchesCreated[]): ILeaderBoard => {
-    this.setResults(match);
+  getLeaderboard = (match: IMatchesCreated[], place: 'home' | 'away'): ILeaderBoard => {
+    this.setResults(match, place);
     this.setTotalGames(match);
     this.setPoints();
-    this.setTotalGoalsScored(match);
+    this.setTotalGoalsScored(match, place);
     this.setGoalsBalance();
     this.setEfficiency();
 
