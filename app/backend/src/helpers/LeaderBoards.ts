@@ -1,4 +1,4 @@
-import { ILeaderBoard } from '../interfaces/leaderBoardInterface';
+import { ILeaderBoard, TPlace } from '../interfaces/leaderBoardInterface';
 import { IMatchesCreated } from '../interfaces/matchesInterfaces';
 
 export default class LeaderBoardHelpers {
@@ -26,7 +26,7 @@ export default class LeaderBoardHelpers {
     this._efficiency = 100;
   }
 
-  setResults = (matches: IMatchesCreated[], place: 'home' | 'away'): void => {
+  setResults = (matches: IMatchesCreated[], place: TPlace): void => {
     matches.forEach((match) => {
       if (place === 'home') {
         if (match.homeTeamGoals > match.awayTeamGoals) {
@@ -46,15 +46,15 @@ export default class LeaderBoardHelpers {
     });
   };
 
-  setTotalGames = (match: IMatchesCreated[]): void => {
-    this._totalGames = match.length;
+  setTotalGames = (): void => {
+    this._totalGames = this._totalVictories + this._totalDraws + this._totalLosses;
   };
 
   setPoints = (): void => {
     this._totalPoints = this._totalVictories * 3 + this._totalDraws;
   };
 
-  setTotalGoalsScored = (matches: IMatchesCreated[], place: 'home' | 'away'): void => {
+  setTotalGoalsScored = (matches: IMatchesCreated[], place: TPlace): void => {
     matches.forEach((match) => {
       if (place === 'home') {
         this._goalsFavor += match.homeTeamGoals;
@@ -74,9 +74,9 @@ export default class LeaderBoardHelpers {
     this._efficiency = +((this._totalPoints / (this._totalGames * 3)) * 100).toFixed(2);
   };
 
-  getLeaderboard = (match: IMatchesCreated[], place: 'home' | 'away'): ILeaderBoard => {
+  getLeaderboard = (match: IMatchesCreated[], place: TPlace): ILeaderBoard => {
     this.setResults(match, place);
-    this.setTotalGames(match);
+    this.setTotalGames();
     this.setPoints();
     this.setTotalGoalsScored(match, place);
     this.setGoalsBalance();

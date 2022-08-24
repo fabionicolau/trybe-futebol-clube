@@ -1,5 +1,7 @@
 import { IMatchesCreated } from './matchesInterfaces';
 
+export type TPlace = 'home' | 'away';
+
 export interface ILeaderBoard {
   name: string;
   totalPoints: number;
@@ -25,7 +27,15 @@ export interface IAwayMatches {
   awayMatches: IMatchesCreated[]
 }
 
+export interface IAllMatches {
+  id: number,
+  teamName: string,
+  homeMatches: IMatchesCreated[],
+  awayMatches: IMatchesCreated[]
+}
+
 export interface ILeaderBoardService {
   getHomeLeaderBoard(): Promise<ILeaderBoard[]>
   getAwayLeaderBoard(): Promise<ILeaderBoard[]>
+  getAllLeaderBoard(): Promise<ILeaderBoard[]>
 }
