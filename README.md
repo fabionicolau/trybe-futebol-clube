@@ -10,6 +10,19 @@ obs: a aplicação frontend foi desenvolvida pela trybe.
 <p>Para instalar, basta executar o comando <code>npm install</code> no diretório raiz do projeto.</p>
 <p>Logo depois, rode o comando <code>npm run compose:up</code> no diretório app. </p>
 <p>Acesse a aplicação frontend pelo http://localhost:3000</p>
+<p>Para realizar o login, utilize uma das opções a seguir: <p>
+ 
+<p>Administrador</p>
+<ul>
+ <li>email: admin@admin.com</li>
+ <li>password: secret_admin</li>
+</ul>
+  
+<p> Usuário </>
+<ul>
+ <li>email: user@user.com</li>
+ <li>password: secret_user</li>
+</ul>
 
 <h1>Tecnologias utilizadas</h1>
 
