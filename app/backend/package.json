@@ -14,7 +14,8 @@
     "predev": "npm run build && npm run db:reset",
     "dev": "nodemon --watch \"./src/**\" ./src/server.ts",
     "postinstall": "if [ ! -z 'cat ./packages.npm' ]; then npm i --ignore-scripts $(cat ./packages.npm); fi",
-    "lint": "eslint ./src --ext .ts"
+    "lint": "eslint ./src --ext .ts",
+    "swagger-autogen": "node swagger.js"
   },
   "keywords": [],
   "author": "",
@@ -47,11 +48,13 @@
     "nyc": "15.1.0",
     "sequelize-cli": "6.3.0",
     "sinon": "13.0.1",
+    "swagger-autogen": "^2.21.5",
     "ts-node": "10.7.0",
     "ts-node-dev": "1.1.8",
     "typescript": "4.4.4"
   },
   "dependencies": {
+    "@types/swagger-ui-express": "^4.1.3",
     "bcryptjs": "2.4.3",
     "cors": "2.8.5",
     "dotenv": "10.0.0",
@@ -60,6 +63,7 @@
     "jest": "27.4.3",
     "jsonwebtoken": "8.5.1",
     "mysql2": "2.3.3",
-    "sequelize": "6.9.0"
+    "sequelize": "6.9.0",
+    "swagger-ui-express": "^4.5.0"
   }
 }
