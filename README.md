@@ -8,7 +8,7 @@ obs: a aplicação frontend foi desenvolvida pela trybe.
 <h1>Instalando</h1>
 
 <p>Para instalar, basta executar o comando <code>npm install</code> no diretório raiz do projeto.</p>
-<p>Logo depois, rode o comando <code>docker-compose up</code>, também, no diretório raiz do projeto. </p>
+<p>Logo depois, rode o comando <code>docker-compose up</code> no diretório app. </p>
 
 <h1>Tecnologias utilizadas</h1>
 
