@@ -26,6 +26,17 @@ describe('Ao fazer o login', () => {
     (User.findOne as sinon.SinonStub).restore();
   })
  
+  it('Retorna uma string com o token quando inseridos dados corretos', async () => {
+    const { email, password } = loginMock
+    chaiHttpResponse = await chai
+      .request(app)
+      .post('/login')
+      .send({ email, password } );
+ 
+    expect(chaiHttpResponse.status).to.equal(200);
+    expect(chaiHttpResponse.body.message).to.be.a.string;
+  })
+
   it('Retorna um erro caso o email ou password sejam inválidos', async () => {
     const { email } = loginMock;
     chaiHttpResponse = await chai

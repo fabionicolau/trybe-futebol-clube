@@ -74,25 +74,25 @@ export default class LeaderBoardHelpers {
     this._efficiency = +((this._totalPoints / (this._totalGames * 3)) * 100).toFixed(2);
   };
 
-  getLeaderboard = (match: IMatchesCreated[], place: TPlace): ILeaderBoard => {
+  setLeaderBoard = (match: IMatchesCreated[], place: TPlace): void => {
     this.setResults(match, place);
     this.setTotalGames();
     this.setPoints();
     this.setTotalGoalsScored(match, place);
     this.setGoalsBalance();
     this.setEfficiency();
-
-    return {
-      name: this._name,
-      totalPoints: this._totalPoints,
-      totalGames: this._totalGames,
-      totalVictories: this._totalVictories,
-      totalDraws: this._totalDraws,
-      totalLosses: this._totalLosses,
-      goalsFavor: this._goalsFavor,
-      goalsOwn: this._goalsOwn,
-      goalsBalance: this._goalsBalance,
-      efficiency: this._efficiency,
-    };
   };
+
+  getLeaderBoard = (): ILeaderBoard => ({
+    name: this._name,
+    totalPoints: this._totalPoints,
+    totalGames: this._totalGames,
+    totalVictories: this._totalVictories,
+    totalDraws: this._totalDraws,
+    totalLosses: this._totalLosses,
+    goalsFavor: this._goalsFavor,
+    goalsOwn: this._goalsOwn,
+    goalsBalance: this._goalsBalance,
+    efficiency: this._efficiency,
+  });
 }

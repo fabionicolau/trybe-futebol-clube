@@ -15,7 +15,8 @@ export default class LeaderBoardService implements ILeaderBoardService {
 
     const homeData = Promise.all(teams.map((team: IHomeMatches) => {
       const homeInstance = new LeaderBoardHelpers(team.teamName);
-      const homeBoard = homeInstance.getLeaderboard(team.homeMatches, 'home');
+      homeInstance.setLeaderBoard(team.homeMatches, 'home');
+      const homeBoard = homeInstance.getLeaderBoard();
 
       return homeBoard;
     }));
@@ -34,7 +35,8 @@ export default class LeaderBoardService implements ILeaderBoardService {
 
     const awayData = Promise.all(teams.map((team: IAwayMatches) => {
       const awayInstance = new LeaderBoardHelpers(team.teamName);
-      const awayBoard = awayInstance.getLeaderboard(team.awayMatches, 'away');
+      awayInstance.setLeaderBoard(team.awayMatches, 'away');
+      const awayBoard = awayInstance.getLeaderBoard();
 
       return awayBoard;
     }));
@@ -54,8 +56,9 @@ export default class LeaderBoardService implements ILeaderBoardService {
 
     const allData = Promise.all(teams.map((team: IAllMatches) => {
       const allInstance = new LeaderBoardHelpers(team.teamName);
-      allInstance.getLeaderboard(team.homeMatches, 'home');
-      const allBoard = allInstance.getLeaderboard(team.awayMatches, 'away');
+      allInstance.setLeaderBoard(team.homeMatches, 'home');
+      allInstance.setLeaderBoard(team.awayMatches, 'away');
+      const allBoard = allInstance.getLeaderBoard();
 
       return allBoard;
     }));
