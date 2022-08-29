@@ -16,6 +16,7 @@ obs: a aplicação frontend foi desenvolvida pela trybe.
   <li>Node.js</li>
   <li>Express</li>
   <li>TypeScript</li>
+  <li>MySQL</li>
   <li>Joi</li>
   <li>JWT</li>
   <li>Bcrypt</li>
