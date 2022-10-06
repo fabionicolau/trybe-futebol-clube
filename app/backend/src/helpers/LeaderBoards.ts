@@ -26,7 +26,7 @@ export default class LeaderBoardHelpers {
     this._efficiency = 100;
   }
 
-  setResults = (matches: IMatchesCreated[], place: TPlace): void => {
+  private setResults = (matches: IMatchesCreated[], place: TPlace): void => {
     matches.forEach((match) => {
       if (place === 'home') {
         if (match.homeTeamGoals > match.awayTeamGoals) {
@@ -46,15 +46,15 @@ export default class LeaderBoardHelpers {
     });
   };
 
-  setTotalGames = (): void => {
+  private setTotalGames = (): void => {
     this._totalGames = this._totalVictories + this._totalDraws + this._totalLosses;
   };
 
-  setPoints = (): void => {
+  private setPoints = (): void => {
     this._totalPoints = this._totalVictories * 3 + this._totalDraws;
   };
 
-  setTotalGoalsScored = (matches: IMatchesCreated[], place: TPlace): void => {
+  private setTotalGoalsScored = (matches: IMatchesCreated[], place: TPlace): void => {
     matches.forEach((match) => {
       if (place === 'home') {
         this._goalsFavor += match.homeTeamGoals;
@@ -66,11 +66,11 @@ export default class LeaderBoardHelpers {
     });
   };
 
-  setGoalsBalance = (): void => {
+  private setGoalsBalance = (): void => {
     this._goalsBalance = this._goalsFavor - this._goalsOwn;
   };
 
-  setEfficiency = (): void => {
+  private setEfficiency = (): void => {
     this._efficiency = +((this._totalPoints / (this._totalGames * 3)) * 100).toFixed(2);
   };
 
